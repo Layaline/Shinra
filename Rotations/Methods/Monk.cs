@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using ff14bot;
 using ff14bot.Managers;
 using ShinraCo.Settings;
+using ShinraCo.Spells;
 using ShinraCo.Spells.Main;
 using Resource = ff14bot.Managers.ActionResourceManager.Monk;
 
@@ -180,6 +181,18 @@ namespace ShinraCo.Rotations
             if (Shinra.Settings.MonkBrotherhood)
             {
                 return await MySpells.Brotherhood.Cast();
+            }
+            return false;
+        }
+        
+        private async Task<bool> Meditation()
+        {
+            if ((Core.Me.TargetDistance(3) || !Core.Me.HasTarget) && Resource.FithChakra <= 4)
+            {
+                Spell.RecentSpell.RemoveAll(t => DateTime.UtcNow < t);
+                {
+                    return await MySpells.Meditation.Cast();
+                }
             }
             return false;
         }
