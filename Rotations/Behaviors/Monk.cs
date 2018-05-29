@@ -50,6 +50,7 @@ namespace ShinraCo.Rotations
             if (await FistsOfFire()) return true;
             if (await FistsOfWind()) return true;
             if (await FistsOfEarth()) return true;
+            if (await Meditation()) return true;
             if (await FireTackle()) return true;
             if (await ShoulderTackle()) return true;
             if (await PerfectBalance()) return true;
@@ -83,6 +84,7 @@ namespace ShinraCo.Rotations
         public override async Task<bool> PreCombatBuff()
         {
             if (await Shinra.SummonChocobo()) return true;
+            if (await Meditation()) return true;
             if (await FistsOfFire()) return true;
             if (await FistsOfWind()) return true;
             return await FistsOfEarth();
